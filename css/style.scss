@@ -4,6 +4,52 @@ $primary-color: #2DA2B8;
 $second-color: #C1DAE0;
 $third-color: #1A2633;
 
+@keyframes move-down {
+  0% {
+    transform: translateY(-50px);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes move-left {
+  0% {
+    transform: translateX(100px);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes move-up {
+  0% {
+    transform: translateY(100px);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
 /*-------------Mixins-------------*/
 
 @mixin tablet {
@@ -45,93 +91,63 @@ $third-color: #1A2633;
     flex-direction: row;
     text-align: left;
   }
-}
 
-.avatar {
-  background-color: $primary-color;
+  .avatar {
+    background-color: $primary-color;
+    border: 2px solid $primary-color;
 
-  &__img {
-    display: block;
-    margin: 50px auto;
-    border-radius: 5%;
-    box-shadow: 5px 5px 5px 5px black;
-    animation-name: fade-in;
-    animation-delay: 500ms;
-    animation-fill-mode: backwards;
-    animation-duration: 3s;
-  }
-
-  @keyframes fade-in {
-    0% {
-      opacity: 0;
+    @include large_screen {
+      width: 30%;
     }
 
-    100% {
-      opacity: 1;
+    &__img {
+      border: 2px solid $primary-color;
+      display: block;
+      margin: 50px auto;
+      border-radius: 5%;
+      box-shadow: 0 4px 8px 0 black, 0 6px 20px 0 black;
+      animation-name: fade-in;
+      animation-delay: 500ms;
+      animation-fill-mode: backwards;
+      animation-duration: 2s;
     }
   }
 
-  @include large_screen {
-    width: 30%;
-  }
-}
+  .heading {
+    padding: 5px 30px;
+    overflow: hidden;
 
-.heading {
-  padding: 5px 30px;
-  overflow: hidden;
-
-  &__name {
-    animation-name: move-left;
-    animation-delay: 500ms;
-    animation-fill-mode: backwards;
-    animation-duration: 2s;
-  }
-
-  &__job {
-    animation-name: move-up;
-    animation-delay: 500ms;
-    animation-fill-mode: backwards;
-    animation-duration: 2s;
-  }
-
-  &__name span {
-    color: $primary-color;
-  }
-
-  &__job span {
-    text-decoration: underline solid $primary-color;
-  }
-
-  @keyframes move-left {
-    0% {
-      transform: translateX(100px);
-      opacity: 0;
+    @include tablet {
+      padding: 70px 30px;
     }
 
-    100% {
-      transform: translateX(0);
-      opacity: 1;
-    }
-  }
-
-  @keyframes move-up {
-    0% {
-      transform: translateY(100px);
-      opacity: 0;
+    @include large_screen {
+      width: 70%;
     }
 
-    100% {
-      transform: translateY(0);
-      opacity: 1;
+    &__name {
+      animation-name: move-left;
+      animation-delay: 500ms;
+      animation-fill-mode: backwards;
+      animation-duration: 2s;
     }
-  }
 
-  @include tablet{
-    padding: 70px 30px;
-  }
+    &__job {
+      display: inline-block;
+      width: 200px;
+      animation-name: move-up;
+      animation-delay: 500ms;
+      animation-fill-mode: backwards;
+      animation-duration: 2s;
+    }
 
-  @include large_screen {
-    width: 70%;
+    &__name span {
+      color: $primary-color;
+    }
+
+    &__job span {
+      text-decoration: underline solid $primary-color;
+    }
   }
 }
 
@@ -147,171 +163,234 @@ $third-color: #1A2633;
     flex-direction: row;
     width: 80%;
   }
-}
 
-/*-------------aside-------------*/
+  .side {
+    color: white;
+    background-color: $primary-color;
 
-.side {
-  color: white;
-  background-color: $primary-color;
-
-  &__heading {
-    background-color: $third-color;
-    text-align: center;
-    padding: 10px;
-	 color: $primary-color;
-	 a{
-		 color: $primary-color;
-		 text-decoration: none;
-		 &:hover{
-			font-weight: bold;
-			text-decoration: underline;
-			text-transform: uppercase;
-		 }
-	 }
-  }
-
-  &__text {
-    padding: 25px;
-  }
-
-  &--space {
-    display: flex;
-    justify-content: space-around;
-    font-size: 30px;
-  }
-
-  @include large_screen {
-    width: 30%;
-  }
-}
-
-.contact {
-  margin: auto;
-
-  li {
-    padding-left: 5px;
-    margin: 10px 10px 10px 30px;
-    list-style: none;
-    width: 250px;
-    color: black;
-  }
-
-  li a {
-    color: black;
-  }
-
-  p {
-    text-align: justify;
-  }
-
-  @include tablet {
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-
-  @include large_screen {
-    flex-direction: column;
-
-    li {
-      text-align: left;
+    @include large_screen {
+      width: 30%;
     }
+
+    &__heading {
+      background-color: $third-color;
+      text-align: center;
+      padding: 10px;
+      color: $primary-color;
+    }
+
+    &__text {
+      padding: 25px;
+    }
+
+    &--space {
+      display: flex;
+      justify-content: space-around;
+      font-size: 30px;
+    }
+
+    &__menu {
+      height: 0px;
+      transition: height .3s ease-out;
+
+      @include large_screen {
+        box-shadow: 0 4px 8px 0 black, 0 6px 20px 0 black;
+        margin: 25px;
+        border-radius: 10px;
+        border: 2px solid $primary-color;
+        height: 340px;
+        overflow: hidden;
+        animation-name: fade-in;
+        animation-delay: 500ms;
+        animation-fill-mode: backwards;
+        animation-duration: 2s;
+      }
+
+      .current {
+        font-weight: bold;
+        text-decoration: underline;
+        text-transform: uppercase;
+        color: $second-color;
+      }
+
+      a {
+        color: $primary-color;
+        text-decoration: none;
+
+        &:hover {
+          font-weight: bold;
+          text-decoration: underline;
+          text-transform: uppercase;
+          color: $second-color;
+          h2{
+            color: $second-color;
+          }
+        }
+      }
+    }
+
+    .menu-btn {
+      display: none;
+    }
+
+    .menu-icon {
+      display: flex;
+      justify-content: right;
+      position: absolute;
+      top: 250px;
+      right: 5px;
+      cursor: pointer;
+
+      @include tablet {
+        top: 320px;
+      }
+
+      @include large_screen {
+        display: none;
+
+      }
+    }
+
+    .menu-icon i {
+      padding: 20px;
+      font-size: 50px;
+      color: $primary-color;
+    }
+
+    .menu-btn:checked~.side__menu {
+      height: 340px;
+    }
+
   }
 }
 
 /*-------------Main-------------*/
 
 .main-content {
-	background-color: $second-color;
+  background-color: $second-color;
   padding: 25px;
-	
+
   @include large_screen {
     width: 70%;
   }
-}
 
-.card {
-	border: 2px solid $primary-color;
-	box-shadow: 5px 5px 5px 5px black;
-  animation-name: move-down;
-  animation-delay: 500ms;
-  animation-fill-mode: backwards;
-  animation-duration: 2s;
-  min-width: 300px;
+  .card {
+    border: 2px solid $primary-color;
+    box-shadow: 0 4px 8px 0 black, 0 6px 20px 0 black;
+    animation-name: move-down;
+    animation-delay: 500ms;
+    animation-fill-mode: backwards;
+    animation-duration: 2s;
+    min-width: 300px;
+    border: 2px solid $primary-color;
+    border-radius: 10px;
+    overflow: hidden;
 
-  &__innercon {
-    display: flex;
-    flex-direction: column;
-  }
+    @include tablet {
+      &__innercon {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+      }
 
+      &__innercon p:nth-child(1) {
+        flex-basis: 40%;
+      }
 
-  &--arrow,
-  &--bullet {
-    font-size: 15px;
-    padding-right: 20px;
-    color: $primary-color;
-  }
+      &__innercon p:nth-child(2) {
+        flex-basis: 50%;
+      }
+    }
 
-  &--bullet {
-    font-size: 5px;
-    vertical-align: middle;
-  }
+    h2{
+      text-align: center;
+    }
 
-  p {
-    padding-bottom: 20px;
-    text-align: justify;
-  }
-
-  hr {
-    color: $primary-color;
-  }
-
-  @include tablet {
     &__innercon {
-      flex-direction: row;
+      display: flex;
       flex-wrap: wrap;
-      justify-content: space-between;
     }
 
-    &__innercon p:nth-child(1) {
-      flex-basis: 40%;
+    &--arrow,
+    &--bullet {
+      font-size: 15px;
+      padding-right: 20px;
+      color: $primary-color;
     }
 
-    &__innercon p:nth-child(2) {
-      flex-basis: 50%;
+    &--bullet {
+      font-size: 5px;
+      vertical-align: middle;
+    }
+
+    p {
+      padding: 20px;
+      text-align: justify;
+    }
+
+    hr {
+      color: $primary-color;
+    }
+
+    .contact {
+      margin: auto;
+
+      @include tablet {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      @include large_screen {
+        flex-direction: column;
+
+        li {
+          text-align: left;
+        }
+      }
+
+      li {
+        padding-left: 5px;
+        margin: 10px 10px 10px 30px;
+        list-style: none;
+        width: 250px;
+        color: black;
+      }
+
+      li a {
+        color: black;
+      }
+
+      p {
+        text-align: justify;
+      }
+    }
+
+    .port {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+
+      .port__card {
+        background-color: #fff;
+        margin: 30px;
+        box-shadow: 0 4px 8px 0 black, 0 6px 20px 0 black;
+        max-width: 300px;
+
+        img {
+          display: block;
+          margin: auto;
+          width: 100%;
+        }
+
+        h3,
+        p {
+          text-align: center;
+        }
+      }
     }
   }
-
-  @keyframes move-down {
-    0% {
-      transform: translateY(-50px);
-      opacity: 0;
-    }
-
-    100% {
-      transform: translateY(0);
-      opacity: 1;
-    }
-  }
-
 }
-
-.card-icon--style {
-  padding: 0px 30px 15px 0px;
-  color: $primary-color;
-  font-size: 30px;
-}
-
-h3 {
-  display: inline-block;
-  width: 200px;
-}
-
-.tab-icon {
-  color: $primary-color;
-}
-
 
 /*------------Footer------------*/
 
@@ -321,12 +400,12 @@ h3 {
   width: 100%;
   margin: 0px auto 10px auto;
 
+  @include large_screen {
+    width: 80%;
+  }
+
   &__text {
     text-align: center;
     color: $primary-color;
-  }
-
-  @include large_screen {
-    width: 80%;
   }
 }
