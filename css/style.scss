@@ -222,7 +222,8 @@ $third-color: #1A2633;
           text-decoration: underline;
           text-transform: uppercase;
           color: $second-color;
-          h2{
+
+          h2 {
             color: $second-color;
           }
         }
@@ -302,7 +303,7 @@ $third-color: #1A2633;
       }
     }
 
-    h2{
+    h2 {
       text-align: center;
     }
 
@@ -381,6 +382,10 @@ $third-color: #1A2633;
           display: block;
           margin: auto;
           width: 100%;
+          transition: opacity .5s;
+          &:hover {
+            opacity: 0.7;
+          }
         }
 
         h3,
